@@ -1,0 +1,106 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Sample Flask API",
+    "description": "API documentation for the sample Flask API",
+    "version": "1.0.0"
+  },
+  "basePath": "/api",
+  "paths": {
+    "/samples": {
+      "get": {
+        "summary": "Get samples by id or all samples",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID of the sample to retrieve. If not provided, all samples are returned.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with sample data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Sample not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new sample",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Sample data to add",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "integer"
+                }
+              },
+              "required": ["name", "age"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Sample added successfully"
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+  
